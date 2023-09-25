@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoKa 3 - Login and Registration</title>
+    <link rel="stylesheet" href="login.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="hero">
+        
+        <div class="form-box">
+            <a class="backToHome" href="index.html">Back to Home</a>
+            <div class="title-cont">
+                
+                
+                <h1>NoKa 3</h1>
+                
+            </div>
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="loginBtnFunc()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="registerBtnFunc()">Register</button>
+            </div>
+            <!-- <div class="social-icons">
+                <img src="fb.png">
+                <img src="tw.png">
+                <img src="gp.png">
+            </div> -->
+            <form id="login" name="login" class="input-group" action="index.html">
+                <input name="email" type="email" class="input-field" placeholder="Email" required>
+                <input name="password" type="password" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check-box"><span>Remember Password</span></input>
+                <button type="submit" class="submit-btn" onclick="loginValidation()">Log In</button>
+            </form>
+            <form id="register" name="register" class="input-group" action="index.html">
+                <input name="name" type="text" class="input-field" placeholder="Name" required>
+                <input name="email" type="email" class="input-field" placeholder="Email" required>
+                <input name="password" type="password" class="input-field" placeholder="Enter Password" required>
+                <input name="confirm-password" type="password" class="input-field" placeholder="Confirm Password" required>
+                <br>
+                <label for="gender">Gender:</label>
+                    <select required id="gender" name="gender">
+                        <option selected="selected" disabled value="0">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                <br>    
+                <input required name="tnc" type="checkbox" class="check-box" value="yes"><span>I agree to the terms & conditions</span></input>
+                <button type="submit" class="submit-btn" onclick="validateAndSubmit()">Register</button>
+            </form>
+            
+        </div>
+        
+    </div>
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+
+        function registerBtnFunc(){
+            
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+            
+        }
+
+        function loginBtnFunc(){
+            
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+            
+        }
+
+        function loginValidation(){
+            let flag = 0;
+            let email = document.forms["login"]["email"].value;
+            if (email == "") {
+                alert("EMAIL CANT BE EMPTY");
+                flag = 1;
+                return false;
+            }
+            let password = document.forms["login"]["password"].value;
+            if (password == "") {
+                alert("PASSWORD CANT BE EMPTY");
+                flag = 1;
+                return false;
+            }
+
+            if(flag == 0){
+                alert("login success");
+                location.href = 'index.html';
+            }
+            
+        }
+
+        function validateAndSubmit(){
+            // registerBtnFunc();
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+
+            let flag = 0;
+
+            let name = document.forms["register"]["name"].value;
+            if (name == "") {
+                alert("NAME CANT BE EMPTY");
+                flag = 1;
+                return false;
+            }
+
+            let email = document.forms["register"]["email"].value;
+            if (email == "") {
+                alert("EMAIL CANT BE EMPTY");
+                flag = 1;
+                return false;
+            }
+
+            let password = document.forms["register"]["password"].value;
+            if (password == "") {
+                alert("PASSWORD CANT BE EMPTY");
+                flag = 1;
+                return false;
+            }
+
+            let confirmPassword = document.forms["register"]["confirm-password"].value;
+            if (confirmPassword == "") {
+                alert("CONFIRM YOUR PASSWORD");
+                flag = 1;
+                return false;
+            }
+            else if(confirmPassword != password){
+                alert("PASSWORD IS NOT SAME");
+                flag = 1;
+                return false;
+            }
+
+            let gender = document.forms["register"]["gender"].value;
+            if (gender == 0) {
+                alert("SELECT YOUR GENDER");
+                flag = 1;
+                return false;
+            }
+            
+            if(!register.form.tnc.checked)
+            {
+                alert('You must agree to the terms first.');
+                flag = 1;
+                return false;
+            }
+
+            if(flag == 0){
+                alert("registration success");
+                location.href = "index.html";
+            }
+        }
+
+    </script>
+</body>
+</html>
